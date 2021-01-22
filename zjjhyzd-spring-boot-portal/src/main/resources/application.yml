@@ -1,0 +1,42 @@
+server:
+  port: 9090
+  servlet:
+    context-path: /client
+spring:
+  application:
+    name: lizhixiang-springboot-portal
+  datasource:
+    druid:
+      stat-view-servlet:
+        enabled: true
+        loginUsername: admin
+        loginPassword: 123456
+    dynamic:
+      druid: #以下是支持的全局默认值
+        max-active: 20
+        time-between-eviction-runs-millis: 30000
+        connection-properties: druid.stat.mergeSql=true
+        filters: stat,wall # 注意这个值和druid原生不一致，默认启动了stat,wall
+      primary: master #设置默认的数据源或者数据源组,默认值即为master
+      strict: false #设置严格模式,默认false不启动. 启动后在未匹配到指定数据源时候会抛出异常,不启动则使用默认数据源.
+      datasource:
+        master:
+          url: jdbc:mysql://localhost:3306/rbac?useUnicode=true&useSSL=false&characterEncoding=utf8
+          username: root
+          password: 123456
+          driver-class-name: com.mysql.jdbc.Driver
+        slave_1:
+          url: jdbc:mysql://localhost:3306/rbac?useUnicode=true&useSSL=false&characterEncoding=utf8
+          username: root
+          password: 123456
+          driver-class-name: com.mysql.jdbc.Driver
+mybatis-plus:
+  global-config:
+    db-config:
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+      id-type: ASSIGN_ID
+logging:
+  level:
+    com.zjjhyzd.springboot: DEBUG
