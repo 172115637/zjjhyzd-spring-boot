@@ -28,6 +28,7 @@ public class AccountDetailsServiceImpl implements AccountDetailsService {
         String phone = params.get("phone");
 
         User user;
+        // 账户不存在
         if (null == account) {
             user = new User().setPhone(phone).setUsername(phone).setPassword(passwordEncoder.encode(UUID.randomUUID().toString()));
             userService.save(user);

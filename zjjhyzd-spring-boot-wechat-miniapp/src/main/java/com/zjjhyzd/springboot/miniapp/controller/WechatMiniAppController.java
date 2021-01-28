@@ -21,6 +21,12 @@ public class WechatMiniAppController {
     @Autowired
     private WechatMiniappService wechatMiniappService;
 
+    /**
+     * 微信小程序登陆
+     *
+     * @param params 需携带code appid这两个必传参数，其余参数详见 AccountDetailsServiceImpl
+     * @return
+     */
     @PostMapping("/login")
     public ResponseEntity<DataModel> login(@RequestBody Map<String, String> params) {
         try {
