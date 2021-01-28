@@ -1,12 +1,13 @@
 package com.zjjhyzd.springboot.config;
 
-import com.zjjhyzd.springboot.config.filter.JwtAuthenticationTokenFilter;
-import com.zjjhyzd.springboot.config.handlers.AuthenticationAccessDeniedHandler;
 import com.zjjhyzd.springboot.config.handlers.AuthenticationEntryPointHandler;
 import com.zjjhyzd.springboot.config.handlers.FormLoginAuthenticationFailureHandler;
 import com.zjjhyzd.springboot.config.handlers.FormLoginAuthenticationSuccessHandler;
-import com.zjjhyzd.springboot.config.service.UserDetailsServiceImpl;
+import com.zjjhyzd.springboot.config.service.NormalUserDetailsServiceImpl;
+import com.zjjhyzd.springboot.config.filter.JwtAuthenticationTokenFilter;
+import com.zjjhyzd.springboot.config.handlers.AuthenticationAccessDeniedHandler;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -33,13 +34,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     FormLoginAuthenticationSuccessHandler authenticationSuccessHandler;
 
     @Autowired
-    UserDetailsServiceImpl userDetailsService;
+    @Qualifier("normalUserDetailsServiceImpl")
+    NormalUserDetailsServiceImpl userDetailsService;
 
     @Autowired
     JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter;
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
@@ -48,7 +50,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.csrf().disable().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().exceptionHandling().authenticationEntryPoint(authenticationEntryPointHandler).accessDeniedHandler(accessDeniedHandler)
                 .and().formLogin().failureHandler(authenticationFailureHandler).successHandler(authenticationSuccessHandler)
-                .and().authorizeRequests().antMatchers("/login","/logout","/test/**").permitAll().antMatchers("/student/list").hasRole("ADMIN")
+                .and().authorizeRequests().antMatchers("/login", "/logout", "/test/**").permitAll().antMatchers("/student/list").hasRole("ADMIN")
                 .and().addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
     }
 

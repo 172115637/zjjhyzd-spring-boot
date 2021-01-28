@@ -1,4 +1,4 @@
-package com.zjjhyzd.springboot.mapper;
+package com.zjjhyzd.springboot.miniapp.mapper;
 
 import com.zjjhyzd.springboot.model.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;

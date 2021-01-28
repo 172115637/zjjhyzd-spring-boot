@@ -2,7 +2,7 @@ package com.zjjhyzd.springboot.config.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zjjhyzd.springboot.model.UserRole;
-import com.zjjhyzd.springboot.service.*;
+import com.zjjhyzd.springboot.miniapp.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -10,15 +10,15 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@Component
-public class UserDetailsServiceImpl implements UserDetailsService {
+@Service("normalUserDetailsServiceImpl")
+public class NormalUserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
     private UserService userService;

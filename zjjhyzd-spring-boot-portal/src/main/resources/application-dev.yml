@@ -1,4 +1,9 @@
 spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    default-property-inclusion: non_null
+    property-naming-strategy: SNAKE_CASE
   application:
     name: lizhixiang-springboot-portal
   datasource:
@@ -17,12 +22,12 @@ spring:
       strict: false #设置严格模式,默认false不启动. 启动后在未匹配到指定数据源时候会抛出异常,不启动则使用默认数据源.
       datasource:
         master:
-          url: jdbc:mysql://192.168.17.10:3306/rbac?useUnicode=true&useSSL=false&characterEncoding=utf8
+          url: jdbc:mysql://localhost:3306/rbac?useUnicode=true&useSSL=false&characterEncoding=utf8
           username: root
           password: 123456
           driver-class-name: com.mysql.jdbc.Driver
         slave_1:
-          url: jdbc:mysql://192.168.17.10:3306/rbac?useUnicode=true&useSSL=false&characterEncoding=utf8
+          url: jdbc:mysql://localhost:3306/rbac?useUnicode=true&useSSL=false&characterEncoding=utf8
           username: root
           password: 123456
           driver-class-name: com.mysql.jdbc.Driver

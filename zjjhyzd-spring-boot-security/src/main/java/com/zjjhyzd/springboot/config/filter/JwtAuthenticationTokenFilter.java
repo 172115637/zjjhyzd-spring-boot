@@ -1,7 +1,7 @@
 package com.zjjhyzd.springboot.config.filter;
 
 import com.zjjhyzd.springboot.commons.utils.JwtTokenUtil;
-import com.zjjhyzd.springboot.config.service.UserDetailsServiceImpl;
+import com.zjjhyzd.springboot.config.service.NormalUserDetailsServiceImpl;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -20,7 +20,7 @@ import java.io.IOException;
 public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 
     @Autowired
-    UserDetailsServiceImpl userDetailsService;
+    NormalUserDetailsServiceImpl userDetailsService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,

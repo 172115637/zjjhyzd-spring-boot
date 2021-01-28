@@ -1,8 +1,8 @@
-package com.zjjhyzd.springboot.service.impl;
+package com.zjjhyzd.springboot.miniapp.service.impl;
 
 import com.zjjhyzd.springboot.model.UserRole;
-import com.zjjhyzd.springboot.mapper.UserRoleMapper;
-import com.zjjhyzd.springboot.service.UserRoleService;
+import com.zjjhyzd.springboot.miniapp.mapper.UserRoleMapper;
+import com.zjjhyzd.springboot.miniapp.service.UserRoleService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 

@@ -1,8 +1,8 @@
-package com.zjjhyzd.springboot.service.impl;
+package com.zjjhyzd.springboot.miniapp.service.impl;
 
 import com.zjjhyzd.springboot.model.User;
-import com.zjjhyzd.springboot.mapper.UserMapper;
-import com.zjjhyzd.springboot.service.UserService;
+import com.zjjhyzd.springboot.miniapp.mapper.UserMapper;
+import com.zjjhyzd.springboot.miniapp.service.UserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 

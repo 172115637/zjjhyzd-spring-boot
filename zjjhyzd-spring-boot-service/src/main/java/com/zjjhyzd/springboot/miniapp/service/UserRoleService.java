@@ -1,4 +1,4 @@
-package com.zjjhyzd.springboot.service;
+package com.zjjhyzd.springboot.miniapp.service;
 
 import com.zjjhyzd.springboot.model.UserRole;
 import com.baomidou.mybatisplus.extension.service.IService;

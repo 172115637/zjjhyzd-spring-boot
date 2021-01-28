@@ -1,9 +1,9 @@
-package com.zjjhyzd.springboot.service.impl;
+package com.zjjhyzd.springboot.miniapp.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zjjhyzd.springboot.model.Permission;
-import com.zjjhyzd.springboot.mapper.PermissionMapper;
-import com.zjjhyzd.springboot.service.PermissionService;
+import com.zjjhyzd.springboot.miniapp.mapper.PermissionMapper;
+import com.zjjhyzd.springboot.miniapp.service.PermissionService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 

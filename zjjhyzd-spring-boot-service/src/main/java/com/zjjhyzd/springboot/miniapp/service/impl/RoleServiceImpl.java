@@ -1,9 +1,9 @@
-package com.zjjhyzd.springboot.service.impl;
+package com.zjjhyzd.springboot.miniapp.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zjjhyzd.springboot.model.Role;
-import com.zjjhyzd.springboot.mapper.RoleMapper;
-import com.zjjhyzd.springboot.service.RoleService;
+import com.zjjhyzd.springboot.miniapp.mapper.RoleMapper;
+import com.zjjhyzd.springboot.miniapp.service.RoleService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
