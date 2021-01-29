@@ -19,9 +19,9 @@ public class ModelMetaObjectHandler implements MetaObjectHandler {
     public void insertFill(MetaObject metaObject) {
         log.info("start insert fill ....");
         LocalDateTime now = LocalDateTime.now();
-        this.strictInsertFill(metaObject, "createAt", LocalDateTime.class, now);
+        this.strictInsertFill(metaObject, "createAt", String.class, now.format(format));
         this.strictInsertFill(metaObject, "createBy", String.class, SecurityContextHolder.getContext().getAuthentication().getName());
-        this.strictInsertFill(metaObject, "updateAt", LocalDateTime.class, now);
+        this.strictInsertFill(metaObject, "updateAt", String.class, now.format(format));
         this.strictInsertFill(metaObject, "updateBy", String.class, SecurityContextHolder.getContext().getAuthentication().getName());
     }
 
@@ -29,7 +29,7 @@ public class ModelMetaObjectHandler implements MetaObjectHandler {
     public void updateFill(MetaObject metaObject) {
         log.info("start update fill ....");
         LocalDateTime now = LocalDateTime.now();
-        this.strictUpdateFill(metaObject, "updateAt", LocalDateTime.class, now);
+        this.strictUpdateFill(metaObject, "updateAt", String.class, now.format(format));
         this.strictUpdateFill(metaObject, "updateBy", String.class, SecurityContextHolder.getContext().getAuthentication().getName());
     }
 }

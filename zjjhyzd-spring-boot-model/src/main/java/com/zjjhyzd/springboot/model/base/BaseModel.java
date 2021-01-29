@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.experimental.Accessors;
+import org.apache.ibatis.type.JdbcType;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -24,9 +25,9 @@ public abstract class BaseModel implements Cloneable, Serializable {
     private Integer deleted;
 
     @Schema(name = "create_at",description = "创建时间")
-    @TableField(fill = FieldFill.INSERT)
+    @TableField(fill = FieldFill.INSERT,jdbcType = JdbcType.DATETIMEOFFSET)
     @JsonProperty("create_at")
-    private LocalDateTime createAt;
+    private String createAt;
 
     @Schema(name = "create_by",description = "创建者")
     @TableField(fill = FieldFill.INSERT)
@@ -34,9 +35,9 @@ public abstract class BaseModel implements Cloneable, Serializable {
     private String createBy;
 
     @Schema(name = "update_at",description = "更新时间")
-    @TableField(fill = FieldFill.INSERT_UPDATE)
+    @TableField(fill = FieldFill.INSERT_UPDATE,jdbcType = JdbcType.DATETIMEOFFSET)
     @JsonProperty("update_at")
-    private LocalDateTime updateAt;
+    private String updateAt;
 
     @Schema(name = "update_by",description = "更新者")
     @TableField(fill = FieldFill.INSERT_UPDATE)
@@ -45,7 +46,7 @@ public abstract class BaseModel implements Cloneable, Serializable {
     // AOP 实现
     @Schema(name = "delete_at",description = "删除时间")
     @JsonProperty("delete_at")
-    private LocalDateTime deleteAt;
+    private String deleteAt;
     // AOP 实现
     @Schema(name = "delete_by",description = "删除者")
     @JsonProperty("delete_by")

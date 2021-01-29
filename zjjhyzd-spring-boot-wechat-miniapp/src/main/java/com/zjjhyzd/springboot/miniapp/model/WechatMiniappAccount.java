@@ -27,10 +27,6 @@ public class WechatMiniappAccount extends BaseModel{
     @JsonProperty(value = "id")
     private String id;
 
-    @Schema(name = "uid",description = "uid")
-    @JsonProperty(value = "uid")
-    private String uid;
-
     @Schema(name = "unionid",description = "unionid")
     @JsonProperty(value = "unionid")
     private String unionid;

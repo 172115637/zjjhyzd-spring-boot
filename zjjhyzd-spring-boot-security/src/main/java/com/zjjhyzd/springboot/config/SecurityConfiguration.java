@@ -50,7 +50,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.csrf().disable().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().exceptionHandling().authenticationEntryPoint(authenticationEntryPointHandler).accessDeniedHandler(accessDeniedHandler)
                 .and().formLogin().failureHandler(authenticationFailureHandler).successHandler(authenticationSuccessHandler)
-                .and().authorizeRequests().antMatchers("/login", "/logout", "/test/**").permitAll().antMatchers("/student/list").hasRole("ADMIN")
+                .and().authorizeRequests().antMatchers("/login", "/logout", "/test/**","/wechat-miniapp/login").permitAll().antMatchers("/student/list").hasRole("ADMIN")
                 .and().addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
     }
 

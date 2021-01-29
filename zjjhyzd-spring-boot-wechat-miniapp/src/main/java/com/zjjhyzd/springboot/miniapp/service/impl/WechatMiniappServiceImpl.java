@@ -2,6 +2,7 @@ package com.zjjhyzd.springboot.miniapp.service.impl;
 
 import cn.binarywang.wx.miniapp.api.WxMaService;
 import cn.binarywang.wx.miniapp.bean.WxMaJscode2SessionResult;
+import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zjjhyzd.springboot.commons.utils.JwtTokenUtil;
 import com.zjjhyzd.springboot.miniapp.config.WxMaConfiguration;
@@ -31,12 +32,18 @@ public class WechatMiniappServiceImpl implements WechatMiniappService {
     public String login(Map<String, String> params) throws WxErrorException, AlreadyBoundException {
         final WxMaService wxService = WxMaConfiguration.getMaService(params.get("appid"));
         WxMaJscode2SessionResult session = wxService.getUserService().getSessionInfo(params.get("code"));
-
-        WechatMiniappAccount account = wechatMiniappAccountService.getOne(new QueryWrapper<WechatMiniappAccount>().eq("openid", session.getOpenid()).eq("unionid", session.getUnionid()));
+        log.info(JSON.toJSONString(session));
+        WechatMiniappAccount account = wechatMiniappAccountService.getOne(new QueryWrapper<WechatMiniappAccount>().eq("openid", session.getOpenid()));
 
         WechatMiniappUserDetails userDetails = accountDetailsService.invoke(session, params, account);
-
-        account.setUnionid(session.getUnionid()).setOpenid(session.getOpenid()).setSessionKey(session.getSessionKey()).setUserId(userDetails.getUserId());
+        if (account == null) {
+            account = new WechatMiniappAccount();
+        }
+        account
+                .setUnionid(session.getUnionid())
+                .setOpenid(session.getOpenid())
+                .setSessionKey(session.getSessionKey())
+                .setUserId(userDetails.getUserId());
         wechatMiniappAccountService.saveOrUpdate(account);
 
         Map<String, Object> claims = new HashMap<>();

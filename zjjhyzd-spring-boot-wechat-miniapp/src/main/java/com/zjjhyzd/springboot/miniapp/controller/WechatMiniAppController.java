@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.HashMap;
 import java.util.Map;
 
-@RestController("/wechat-miniapp")
-@RequestMapping
+@RestController
+@RequestMapping("/wechat-miniapp")
 public class WechatMiniAppController {
     @Autowired
     private WechatMiniappService wechatMiniappService;
@@ -36,9 +36,9 @@ public class WechatMiniAppController {
             return new ResponseEntity<>(DataModel.instance(result, true, HttpStatus.OK), HttpStatus.OK);
         } catch (WxErrorException e) {
             e.printStackTrace();
-            return new ResponseEntity<>(DataModel.instance("系统异常", false), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(DataModel.instance("系统异常", false, HttpStatus.INTERNAL_SERVER_ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (AlreadyBoundException e) {
-            return new ResponseEntity<>(DataModel.instance(e.getMessage(), false), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(DataModel.instance(e.getMessage(), false, HttpStatus.BAD_REQUEST), HttpStatus.BAD_REQUEST);
         }
     }
 }

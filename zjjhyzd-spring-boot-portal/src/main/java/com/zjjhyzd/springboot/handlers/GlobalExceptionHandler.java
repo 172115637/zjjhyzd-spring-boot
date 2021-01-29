@@ -38,6 +38,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(Throwable.class)
     public ResponseEntity<DataModel> exception(Throwable e) {
+        e.printStackTrace();
         log.debug("未知异常\n"+e.getMessage());
         return ResponseEntityFactory.error(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
     }

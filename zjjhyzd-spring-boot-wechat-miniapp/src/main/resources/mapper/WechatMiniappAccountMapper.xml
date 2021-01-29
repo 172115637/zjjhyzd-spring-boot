@@ -5,7 +5,6 @@
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.zjjhyzd.springboot.miniapp.model.WechatMiniappAccount">
         <id column="id" property="id" />
-        <result column="uid" property="uid" />
         <result column="unionid" property="unionid" />
         <result column="openid" property="openid" />
         <result column="session_key" property="sessionKey" />

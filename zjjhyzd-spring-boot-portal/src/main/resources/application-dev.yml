@@ -1,8 +1,22 @@
+seata:
+  enabled: true
+  application-id: zjjhyzd-spring-boot
+  tx-service-group: tx_group
+  enable-auto-data-source-proxy: false   #一定要是false
+  service:
+    vgroup-mapping:
+      tx_group: default  #key与上面的tx-service-group的值对应
+    grouplist:
+      default: 127.0.0.1:8091 #seata-server地址仅file注册中心需要
+  config:
+    type: file
+  registry:
+    type: file
 wx:
   miniapp:
     configs:
-      - appid: wxbe52e799e2e6b9ac
-        secret: f680a4752020aeaa65b51fce2c3153fc
+      - appid: wxf7d96f5ce4da0c9b
+        secret: 1051a8ba4f885f11fe8145602b17c989
         token: #微信小程序消息服务器配置的token
         aesKey: #微信小程序消息服务器配置的EncodingAESKey
         msgDataFormat: JSON
@@ -13,7 +27,7 @@ spring:
     default-property-inclusion: non_null
     property-naming-strategy: SNAKE_CASE
   application:
-    name: lizhixiang-springboot-portal
+    name: zjjhyzd-spring-boot
   datasource:
     druid:
       stat-view-servlet:
@@ -28,6 +42,8 @@ spring:
         filters: stat,wall # 注意这个值和druid原生不一致，默认启动了stat,wall
       primary: master #设置默认的数据源或者数据源组,默认值即为master
       strict: false #设置严格模式,默认false不启动. 启动后在未匹配到指定数据源时候会抛出异常,不启动则使用默认数据源.
+      seata: true    #开启seata代理，开启后默认每个数据源都代理，如果某个不需要代理可单独关闭
+      seata-mode: AT #支持XA及AT模式,默认AT
       datasource:
         master:
           url: jdbc:mysql://localhost:3306/rbac?useUnicode=true&useSSL=false&characterEncoding=utf8
