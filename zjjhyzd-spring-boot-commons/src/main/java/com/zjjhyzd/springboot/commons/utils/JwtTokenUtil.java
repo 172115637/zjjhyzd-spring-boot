@@ -6,6 +6,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 public class JwtTokenUtil {
@@ -20,16 +21,21 @@ public class JwtTokenUtil {
         expiration = props.getLong("jwt.expiration");
         header = props.getProperty("jwt.header");
     }
-//
-//    /**
-//     * 生成token令牌
-//     *
-//     * @param claims 用户
-//     * @return 令token牌
-//     */
-//    public String generateToken(Map<String, Object> claims) {
-//        return generateToken(claims);
-//    }
+
+    /**
+     * 生成token令牌
+     *
+     * @param claims 用户
+     * @return 令token牌
+     */
+    public static String generateToken(com.zjjhyzd.springboot.commons.utils.Claims claims) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("sub", claims.getSub());
+        map.put("created", claims.getCreated());
+        map.put("session_key", claims.getSessionKey());
+        map.put("open_id", claims.getOpenId());
+        return generateToken(map);
+    }
 
     /**
      * 从令牌中获取用户名

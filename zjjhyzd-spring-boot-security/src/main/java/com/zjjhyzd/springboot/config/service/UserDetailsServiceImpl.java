@@ -17,8 +17,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@Service("normalUserDetailsServiceImpl")
-public class NormalUserDetailsServiceImpl implements UserDetailsService {
+@Service
+public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
     private UserService userService;
@@ -34,7 +34,6 @@ public class NormalUserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
     private PermissionService permissionService;
-
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

@@ -1,7 +1,6 @@
 package com.zjjhyzd.springboot.service.impl;
 
 import cn.binarywang.wx.miniapp.bean.WxMaJscode2SessionResult;
-import com.baomidou.dynamic.datasource.annotation.DSTransactional;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zjjhyzd.springboot.miniapp.exception.AlreadyBoundException;
 import com.zjjhyzd.springboot.miniapp.model.WechatMiniappAccount;
@@ -13,7 +12,6 @@ import io.seata.spring.annotation.GlobalTransactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Map;
 import java.util.UUID;
@@ -27,7 +25,6 @@ public class AccountDetailsServiceImpl implements AccountDetailsService {
     PasswordEncoder passwordEncoder;
 
     @Override
-    @Transactional
     @GlobalTransactional
     public WechatMiniappUserDetails invoke(WxMaJscode2SessionResult session, Map<String, String> params, WechatMiniappAccount account) throws AlreadyBoundException {
         String phone = params.get("phone");

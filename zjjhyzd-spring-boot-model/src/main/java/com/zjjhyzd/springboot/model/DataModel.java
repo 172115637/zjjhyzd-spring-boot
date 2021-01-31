@@ -8,7 +8,7 @@ public class DataModel implements Serializable {
     private static final long serialVersionUID = -1291329519310864143L;
 
     private Object data;
-    private Boolean success;
+    private Boolean success = true;
     private Integer code = HttpStatus.OK.value();
     private String message;
 

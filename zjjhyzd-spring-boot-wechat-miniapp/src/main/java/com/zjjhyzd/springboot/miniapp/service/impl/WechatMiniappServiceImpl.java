@@ -4,6 +4,7 @@ import cn.binarywang.wx.miniapp.api.WxMaService;
 import cn.binarywang.wx.miniapp.bean.WxMaJscode2SessionResult;
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.zjjhyzd.springboot.commons.utils.Claims;
 import com.zjjhyzd.springboot.commons.utils.JwtTokenUtil;
 import com.zjjhyzd.springboot.miniapp.config.WxMaConfiguration;
 import com.zjjhyzd.springboot.miniapp.exception.AlreadyBoundException;
@@ -46,11 +47,10 @@ public class WechatMiniappServiceImpl implements WechatMiniappService {
                 .setUserId(userDetails.getUserId());
         wechatMiniappAccountService.saveOrUpdate(account);
 
-        Map<String, Object> claims = new HashMap<>();
-        claims.put("sub", userDetails.getUsername());
-        claims.put("created", new Date());
-        claims.put("session_key", session.getSessionKey());
-        claims.put("open_id", session.getOpenid());
+//        Map<String, Object> claims = new HashMap<>();
+        Claims claims = new Claims().setSub(userDetails
+                .getUsername()).setId(account.getUserId())
+                .setOpenId(session.getOpenid()).setSessionKey(session.getSessionKey());
         return JwtTokenUtil.generateToken(claims);
     }
 }

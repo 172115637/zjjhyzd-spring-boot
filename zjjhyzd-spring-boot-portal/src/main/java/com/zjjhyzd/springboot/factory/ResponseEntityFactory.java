@@ -37,6 +37,6 @@ public class ResponseEntityFactory {
     }
 
     public static ResponseEntity<DataModel> error(String message, HttpStatus status) {
-        return new ResponseEntity<>(DataModel.instance(null, false, status, message), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(DataModel.instance(null, false, status, message), status);
     }
 }
