@@ -2,7 +2,7 @@ package com.zjjhyzd.springboot.config.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zjjhyzd.springboot.model.UserRole;
-import com.zjjhyzd.springboot.miniapp.service.*;
+import com.zjjhyzd.springboot.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

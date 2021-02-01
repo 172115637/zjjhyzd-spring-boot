@@ -5,7 +5,7 @@ import com.zjjhyzd.springboot.commons.utils.Claims;
 import com.zjjhyzd.springboot.commons.utils.JwtTokenUtil;
 import com.zjjhyzd.springboot.config.service.AuthService;
 import com.zjjhyzd.springboot.config.service.UserDetailsServiceImpl;
-import com.zjjhyzd.springboot.miniapp.service.UserService;
+import com.zjjhyzd.springboot.service.UserService;
 import com.zjjhyzd.springboot.model.User;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;

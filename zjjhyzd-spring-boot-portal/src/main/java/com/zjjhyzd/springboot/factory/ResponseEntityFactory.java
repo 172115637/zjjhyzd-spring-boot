@@ -25,18 +25,18 @@ public class ResponseEntityFactory {
     }
 
     public static ResponseEntity<DataModel> error() {
-        return new ResponseEntity<>(DataModel.instance(null, false, HttpStatus.BAD_REQUEST), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(DataModel.instance(null, false, HttpStatus.BAD_REQUEST), HttpStatus.OK);
     }
 
     public static ResponseEntity<DataModel> error(String message) {
-        return new ResponseEntity<>(DataModel.instance(null, false, HttpStatus.BAD_REQUEST, message), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(DataModel.instance(null, false, HttpStatus.BAD_REQUEST, message), HttpStatus.OK);
     }
 
     public static ResponseEntity<DataModel> error(String message, Integer code) {
-        return new ResponseEntity<>(DataModel.instance(null, false, code, message), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(DataModel.instance(null, false, code, message), HttpStatus.OK);
     }
 
     public static ResponseEntity<DataModel> error(String message, HttpStatus status) {
-        return new ResponseEntity<>(DataModel.instance(null, false, status, message), status);
+        return new ResponseEntity<>(DataModel.instance(null, false, status, message), HttpStatus.OK);
     }
 }

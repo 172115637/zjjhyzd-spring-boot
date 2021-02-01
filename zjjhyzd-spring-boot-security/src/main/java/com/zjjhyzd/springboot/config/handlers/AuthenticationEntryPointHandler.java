@@ -17,7 +17,7 @@ import java.io.PrintWriter;
 public class AuthenticationEntryPointHandler implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
-        response.setStatus(HttpStatus.UNAUTHORIZED.value());
+        response.setStatus(HttpStatus.OK.value());
         DataModel model = DataModel.instance().setCode(HttpStatus.UNAUTHORIZED).setMessage("尚未登陆").setSuccess(false);
         response.setContentType("application/json;charset=utf-8");
         PrintWriter writer = response.getWriter();

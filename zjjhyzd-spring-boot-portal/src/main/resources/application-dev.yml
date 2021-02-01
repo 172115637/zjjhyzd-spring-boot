@@ -1,3 +1,4 @@
+
 seata:
   enabled: true
   application-id: zjjhyzd-spring-boot
@@ -70,3 +71,9 @@ mybatis-plus:
 logging:
   level:
     com.zjjhyzd.springboot: DEBUG
+springfox:
+  documentation:
+    swagger-ui:
+      enabled: false
+knife4j:
+  enable: true

@@ -2,11 +2,11 @@ package com.zjjhyzd.springboot.service.impl;
 
 import cn.binarywang.wx.miniapp.bean.WxMaJscode2SessionResult;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.zjjhyzd.springboot.miniapp.exception.AlreadyBoundException;
-import com.zjjhyzd.springboot.miniapp.model.WechatMiniappAccount;
-import com.zjjhyzd.springboot.miniapp.model.WechatMiniappUserDetails;
-import com.zjjhyzd.springboot.miniapp.service.AccountDetailsService;
-import com.zjjhyzd.springboot.miniapp.service.UserService;
+import com.zjjhyzd.springboot.exception.AlreadyBoundException;
+import com.zjjhyzd.springboot.model.WechatMiniappAccount;
+import com.zjjhyzd.springboot.model.WechatMiniappUserDetails;
+import com.zjjhyzd.springboot.service.AccountDetailsService;
+import com.zjjhyzd.springboot.service.UserService;
 import com.zjjhyzd.springboot.model.User;
 import io.seata.spring.annotation.GlobalTransactional;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -19,6 +19,8 @@ import org.springframework.http.ResponseEntity;
 import ${package.Service}.${table.serviceName};
 import ${package.Entity}.${table.entityName};
 import org.springframework.beans.factory.annotation.Autowired;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 <% } %>
 
 /**
@@ -34,7 +36,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 <% }else{ %>
 @Controller
 <% } %>
-@RequestMapping("<% if(isNotEmpty(package.ModuleName)){ %>/${package.ModuleName}<% } %>/<% if(isNotEmpty(controllerMappingHyphenStyle)){ %>${controllerMappingHyphen}<% }else{ %>${table.entityPath}<% } %>")
+@RequestMapping("/api<% if(isNotEmpty(package.ModuleName)){ %>/${package.ModuleName}<% } %>/<% if(isNotEmpty(controllerMappingHyphenStyle)){ %>${controllerMappingHyphen}<% }else{ %>${table.entityPath}<% } %>")
 <% if(kotlin){ %>
 class ${table.controllerName}<% if(isNotEmpty(superControllerClass)){ %> : ${superControllerClass}()<% } %>
 <% }else{ %>
@@ -54,57 +56,59 @@ public class ${table.controllerName} {
     <% } %>
 
     <% if(isNotEmpty(cfg.controllerMethods.list)){  %>
+    @Operation(tags = "分页查询", description = "查询列表", parameters = {
+            @Parameter(name = "current", description = "当前页", example = "1"),
+            @Parameter(name = "page_size", description = "分页大小", example = "10"),
+    })
     @GetMapping(value = "/")
-    public ResponseEntity<Page<${table.entityName}>> list(@RequestParam(required = false) Integer current, @RequestParam(required = false) Integer pageSize) {
-        if (current == null) {
-            current = 1;
-        }
-        if (pageSize == null) {
-            pageSize = 10;
-        }
+    public ResponseEntity<DataModel> list(@RequestParam(required = false,defaultValue = "1") Integer current, @RequestParam(required = false,defaultValue = "10") Integer pageSize) {
         Page<${table.entityName}> aPage = ${serviceInstanceName}.page(new Page<>(current, pageSize));
         return ResponseEntityFactory.success(aPage);
     }
 
+    @Operation(tags = "条件查询", description = "查询列表", parameters = {
+            @Parameter(name = "current", description = "当前页", example = "1"),
+            @Parameter(name = "page_size", description = "分页大小", example = "10"),
+    })
     @PostMapping(value = "/")
-    public ResponseEntity<DataModel> list(@RequestBody Permission permission, @RequestParam(required = false) Integer current, @RequestParam(required = false) Integer pageSize) {
-        if (current == null) {
-            current = 1;
-        }
-        if (pageSize == null) {
-            pageSize = 10;
-        }
-        Page<Permission> aPage = permissionService.page(new Page<>(current, pageSize), new QueryWrapper<>(permission));
+    public ResponseEntity<DataModel> list(@RequestBody ${table.entityName} params, @RequestParam(required = false,defaultValue = "1") Integer current, @RequestParam(required = false,defaultValue = "10") Integer pageSize) {
+        Page<${table.entityName}> aPage = ${serviceInstanceName}.page(new Page<>(current, pageSize), new QueryWrapper<>(params));
         return ResponseEntityFactory.success(aPage);
     }
     <% } %>
 
     <% if(isNotEmpty(cfg.controllerMethods.getById)){ %>
+    @Operation(tags = "查询详情", description = "根据ID查询", parameters = {
+            @Parameter(name = "id", description = "id", example = "1")
+    })
     @GetMapping(value = "/{id}")
-    public ResponseEntity<${table.entityName}> getById(@PathVariable("id") String id) {
-        return ResponseEntityFactory.success(permissionService.getById(id));
+    public ResponseEntity<DataModel> getById(@PathVariable("id") String id) {
+        return ResponseEntityFactory.success(${serviceInstanceName}.getById(id));
     }
     <% } %>
 
     <% if(isNotEmpty(cfg.controllerMethods.create)){ %>
+    @Operation(tags = "新增", description = "新增")
     @PostMapping(value = "/create")
-    public ResponseEntity<Object> create(@RequestBody ${table.entityName} params) {
+    public ResponseEntity<DataModel> create(@RequestBody ${table.entityName} params) {
         ${serviceInstanceName}.save(params);
         return ResponseEntityFactory.success("created successfully");
     }
     <% } %>
 
     <% if(isNotEmpty(cfg.controllerMethods.delete)){ %>
+    @Operation(tags = "删除", description = "根据ID删除")
     @PostMapping(value = "/delete/{id}")
-    public ResponseEntity<Object> delete(@PathVariable("id") String id) {
+    public ResponseEntity<DataModel> delete(@PathVariable("id") String id) {
         ${serviceInstanceName}.removeById(id);
         return ResponseEntityFactory.success("deleted successfully");
     }
     <% } %>
 
     <% if(isNotEmpty(cfg.controllerMethods.update)){ %>
+    @Operation(tags = "更新", description = "根据ID更新")
     @PostMapping(value = "/update")
-    public ResponseEntity<Object> delete(@RequestBody ${table.entityName} params) {
+    public ResponseEntity<DataModel> delete(@RequestBody ${table.entityName} params) {
         ${serviceInstanceName}.updateById(params);
         return ResponseEntityFactory.success("updated successfully");
     }

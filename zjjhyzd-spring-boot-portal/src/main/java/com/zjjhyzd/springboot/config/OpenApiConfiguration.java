@@ -1,32 +1,53 @@
 package com.zjjhyzd.springboot.config;
 
+import com.github.xiaoymin.knife4j.spring.annotations.EnableKnife4j;
+import io.netty.handler.codec.http.HttpMethod;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springdoc.core.GroupedOpenApi;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.builders.RequestParameterBuilder;
+import springfox.documentation.oas.annotations.EnableOpenApi;
+import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.Contact;
+import springfox.documentation.service.ParameterType;
+import springfox.documentation.service.RequestParameter;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Configuration
+@EnableKnife4j
+@EnableOpenApi
 public class OpenApiConfiguration {
+
+
     @Bean
-    public GroupedOpenApi permission() {
-        return GroupedOpenApi.builder()
-                .group("权限")
-                .pathsToMatch("/api/permission/**")
+    public Docket createRestApi() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .apiInfo(apiInfo())
+                .select()
+                .apis(RequestHandlerSelectors.basePackage("com.zjjhyzd.springboot.controller"))
+                //.apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
+                .paths(PathSelectors.any())
                 .build();
     }
 
-    @Bean
-    public GroupedOpenApi role() {
-        return GroupedOpenApi.builder()
-                .group("角色")
-                .pathsToMatch("/api/role/**")
-                .build();
-    }
 
-    @Bean
-    public GroupedOpenApi rolePermission() {
-        return GroupedOpenApi.builder()
-                .group("角色权限")
-                .pathsToMatch("/api/role-permission/**")
+    private ApiInfo apiInfo() {
+        // 获取工程名称
+        String projectName = System.getProperty("user.dir");
+        return new ApiInfoBuilder()
+                .title(projectName.substring(projectName.lastIndexOf("\\") + 1) + " API接口文档")
+                .contact(new Contact("lizhixiang", "", "admin@zjjhyzd.com"))
+                .version("1.0")
+                .description("API文档")
                 .build();
     }
 }

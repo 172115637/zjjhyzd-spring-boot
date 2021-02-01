@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 
 import java.io.Serializable;
 
+@ApiModel(value = "通用响应数据结构类")
 public class DataModel implements Serializable {
     private static final long serialVersionUID = -1291329519310864143L;
 

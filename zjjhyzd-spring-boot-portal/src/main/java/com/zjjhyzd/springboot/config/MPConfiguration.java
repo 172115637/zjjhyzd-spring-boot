@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@MapperScan("com.zjjhyzd.springboot.miniapp.mapper")
+@MapperScan("com.zjjhyzd.springboot.mapper")
 public class MPConfiguration {
 
     /**
