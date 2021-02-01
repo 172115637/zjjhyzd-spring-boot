@@ -19,8 +19,8 @@ import org.springframework.http.ResponseEntity;
 import ${package.Service}.${table.serviceName};
 import ${package.Entity}.${table.entityName};
 import org.springframework.beans.factory.annotation.Autowired;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 <% } %>
 
 /**
@@ -37,6 +37,7 @@ import io.swagger.v3.oas.annotations.Parameter;
 @Controller
 <% } %>
 @RequestMapping("/api<% if(isNotEmpty(package.ModuleName)){ %>/${package.ModuleName}<% } %>/<% if(isNotEmpty(controllerMappingHyphenStyle)){ %>${controllerMappingHyphen}<% }else{ %>${table.entityPath}<% } %>")
+@Api(value = "${table.controllerName}<% if(isNotEmpty(superControllerClass)){ %> : ${superControllerClass}()<% } %>",tags = "${table.comment!}")
 <% if(kotlin){ %>
 class ${table.controllerName}<% if(isNotEmpty(superControllerClass)){ %> : ${superControllerClass}()<% } %>
 <% }else{ %>
@@ -56,20 +57,14 @@ public class ${table.controllerName} {
     <% } %>
 
     <% if(isNotEmpty(cfg.controllerMethods.list)){  %>
-    @Operation(tags = "分页查询", description = "查询列表", parameters = {
-            @Parameter(name = "current", description = "当前页", example = "1"),
-            @Parameter(name = "page_size", description = "分页大小", example = "10"),
-    })
+    @ApiOperation(value = "分页查询")
     @GetMapping(value = "/")
     public ResponseEntity<DataModel> list(@RequestParam(required = false,defaultValue = "1") Integer current, @RequestParam(required = false,defaultValue = "10") Integer pageSize) {
         Page<${table.entityName}> aPage = ${serviceInstanceName}.page(new Page<>(current, pageSize));
         return ResponseEntityFactory.success(aPage);
     }
 
-    @Operation(tags = "条件查询", description = "查询列表", parameters = {
-            @Parameter(name = "current", description = "当前页", example = "1"),
-            @Parameter(name = "page_size", description = "分页大小", example = "10"),
-    })
+    @ApiOperation(value = "条件查询")
     @PostMapping(value = "/")
     public ResponseEntity<DataModel> list(@RequestBody ${table.entityName} params, @RequestParam(required = false,defaultValue = "1") Integer current, @RequestParam(required = false,defaultValue = "10") Integer pageSize) {
         Page<${table.entityName}> aPage = ${serviceInstanceName}.page(new Page<>(current, pageSize), new QueryWrapper<>(params));
@@ -78,9 +73,7 @@ public class ${table.controllerName} {
     <% } %>
 
     <% if(isNotEmpty(cfg.controllerMethods.getById)){ %>
-    @Operation(tags = "查询详情", description = "根据ID查询", parameters = {
-            @Parameter(name = "id", description = "id", example = "1")
-    })
+    @ApiOperation(value = "查询详情")
     @GetMapping(value = "/{id}")
     public ResponseEntity<DataModel> getById(@PathVariable("id") String id) {
         return ResponseEntityFactory.success(${serviceInstanceName}.getById(id));
@@ -88,7 +81,7 @@ public class ${table.controllerName} {
     <% } %>
 
     <% if(isNotEmpty(cfg.controllerMethods.create)){ %>
-    @Operation(tags = "新增", description = "新增")
+    @ApiOperation(value = "新增")
     @PostMapping(value = "/create")
     public ResponseEntity<DataModel> create(@RequestBody ${table.entityName} params) {
         ${serviceInstanceName}.save(params);
@@ -97,7 +90,7 @@ public class ${table.controllerName} {
     <% } %>
 
     <% if(isNotEmpty(cfg.controllerMethods.delete)){ %>
-    @Operation(tags = "删除", description = "根据ID删除")
+    @ApiOperation(value = "删除")
     @PostMapping(value = "/delete/{id}")
     public ResponseEntity<DataModel> delete(@PathVariable("id") String id) {
         ${serviceInstanceName}.removeById(id);
@@ -106,7 +99,7 @@ public class ${table.controllerName} {
     <% } %>
 
     <% if(isNotEmpty(cfg.controllerMethods.update)){ %>
-    @Operation(tags = "更新", description = "根据ID更新")
+    @ApiOperation(value = "更新")
     @PostMapping(value = "/update")
     public ResponseEntity<DataModel> delete(@RequestBody ${table.entityName} params) {
         ${serviceInstanceName}.updateById(params);

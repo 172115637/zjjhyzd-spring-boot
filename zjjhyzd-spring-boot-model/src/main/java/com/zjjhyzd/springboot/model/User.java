@@ -1,7 +1,9 @@
 package com.zjjhyzd.springboot.model;
 import com.zjjhyzd.springboot.model.base.BaseModel;
 import com.baomidou.mybatisplus.annotation.TableName;
-import io.swagger.v3.oas.annotations.media.Schema;
+import java.time.LocalDateTime;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,13 +14,13 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author lizhixiang
- * @since 2021-01-28
+ * @since 2021-02-01
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
 @TableName("t_user")
-@Schema(title="User对象", description="用户表")
+@ApiModel(description="用户表",value = "User")
 public class User extends BaseModel{
 
     private static final long serialVersionUID = 1L;
@@ -26,19 +28,19 @@ public class User extends BaseModel{
     @JsonProperty(value = "id")
     private String id;
 
-    @Schema(name = "username",description = "用户名")
+    @ApiModelProperty(name = "username",value = "用户名")
     @JsonProperty(value = "username")
     private String username;
 
-    @Schema(name = "password",description = "密码，加密存储")
+    @ApiModelProperty(name = "password",value = "密码，加密存储")
     @JsonProperty(value = "password")
     private String password;
 
-    @Schema(name = "phone",description = "注册手机号")
+    @ApiModelProperty(name = "phone",value = "注册手机号")
     @JsonProperty(value = "phone")
     private String phone;
 
-    @Schema(name = "email",description = "注册邮箱")
+    @ApiModelProperty(name = "email",value = "注册邮箱")
     @JsonProperty(value = "email")
     private String email;
 

@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiModelProperty;
 <% if(entityLombokModel){ %>
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import com.fasterxml.jackson.annotation.JsonProperty;
 <% if(chainModel){ %>
 import lombok.experimental.Accessors;
 <% } %>
@@ -36,7 +37,7 @@ import lombok.experimental.Accessors;
 @TableName("${table.name}")
 <% } %>
 <% if(swagger2){ %>
-@ApiModel(value="${entity}对象", description="${table.comment!''}")
+@ApiModel(description="${table.comment!''}",value = "${entity}")
 <% } %>
 <% if(isNotEmpty(superEntityClass)){ %>
 public class ${entity} extends ${superEntityClass}<% if(activeRecord){ %><${entity}><%}%>{
@@ -51,6 +52,22 @@ public class ${entity} implements Serializable {
 <% } %>
 <% /** -----------BEGIN 字段循环遍历----------- **/ %>
 <% for(field in table.fields){ %>
+<% if(
+    field.propertyName!="deleted"
+    &&
+    field.propertyName!="version"
+     &&
+    field.propertyName!="createAt"
+     &&
+     field.propertyName!="createBy"
+      &&
+     field.propertyName!="updateAt"
+     &&
+     field.propertyName!="updateBy"
+    &&
+     field.propertyName!="deleteAt"
+     &&
+     field.propertyName!="deleteBy"){%>
     <%
     if(field.keyFlag){
         var keyPropertyName = field.propertyName;
@@ -59,7 +76,7 @@ public class ${entity} implements Serializable {
 
     <% if(isNotEmpty(field.comment)){ %>
         <% if(swagger2){ %>
-    @ApiModelProperty(value = "${field.comment}")
+    @ApiModelProperty(name = "${field.annotationColumnName}",value = "${field.comment}")
         <% }else{ %>
     /**
      * ${field.comment}
@@ -101,10 +118,9 @@ public class ${entity} implements Serializable {
     <% if(logicDeleteFieldName!'' == field.name){ %>
     @TableLogic
     <% } %>
-    <% if(field.propertyName!='deleted' && field.propertyName!='version' && field.propertyName!='createAt' && field.propertyName!='createBy' && field.propertyName!='updateAt' && field.propertyName!='updateBy' && field.propertyName!='deleteAt' && field.propertyName!=deleteBy''){%>
+    @JsonProperty(value = "${field.annotationColumnName}")
     private ${field.propertyType} ${field.propertyName};
     <%}%>
-    }
 <% } %>
 <% /** -----------END 字段循环遍历----------- **/ %>
 

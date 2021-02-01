@@ -1,5 +1,7 @@
 package com.zjjhyzd.springboot.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import org.springframework.http.HttpStatus;
 
 import java.io.Serializable;
@@ -8,9 +10,16 @@ import java.io.Serializable;
 public class DataModel implements Serializable {
     private static final long serialVersionUID = -1291329519310864143L;
 
+    @ApiModelProperty(value = "数据")
     private Object data;
+
+    @ApiModelProperty(value = "请求逻辑结果")
     private Boolean success = true;
+
+    @ApiModelProperty(value = "请求通信结果")
     private Integer code = HttpStatus.OK.value();
+
+    @ApiModelProperty(value = "消息提示")
     private String message;
 
     @SuppressWarnings("unused")
@@ -19,7 +28,6 @@ public class DataModel implements Serializable {
     }
 
     /**
-     *
      * <p>
      * Description: 默认success为true，code为HttpStatus.OK.value()，其余为null
      * </p>
@@ -86,7 +94,6 @@ public class DataModel implements Serializable {
         this.success = success;
         return this;
     }
-
 
 
     public Integer getCode() {
