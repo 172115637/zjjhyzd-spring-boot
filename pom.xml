@@ -51,6 +51,10 @@
         <springdoc-openapi-ui.version>1.5.2</springdoc-openapi-ui.version>
         <weixin-java.version>4.0.0</weixin-java.version>
         <thumbnailator.version>0.4.8</thumbnailator.version>
+        <aliyun-java-sdk.version>4.5.3</aliyun-java-sdk.version>
+        <aliyun-sdk-oss.version>3.10.2</aliyun-sdk-oss.version>
+        <youzan-open-sdk-core.version>1.0.7-RELEASE</youzan-open-sdk-core.version>
+        <youzan-open-sdk-gen.version>1.0.7.202012071102-RELEASE</youzan-open-sdk-gen.version>
     </properties>
 
 
@@ -232,6 +236,31 @@
                 <groupId>net.coobird</groupId>
                 <artifactId>thumbnailator</artifactId>
                 <version>${thumbnailator.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.aliyun</groupId>
+                <artifactId>aliyun-java-sdk-core</artifactId>
+                <version>${aliyun-java-sdk.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.aliyun.oss</groupId>
+                <artifactId>aliyun-sdk-oss</artifactId>
+                <version>${aliyun-sdk-oss.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.youzan.cloud</groupId>
+                <artifactId>open-sdk-core</artifactId>
+                <version>${youzan-open-sdk-core.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>com.youzan.cloud</groupId>
+                <artifactId>open-sdk-gen</artifactId>
+                <version>${youzan-open-sdk-gen.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

@@ -22,4 +22,8 @@ public interface RoleService extends IService<Role> {
      * @return Set
      */
     Set<String> getParentIdSet(String roleId,Set<String> idSet);
+
+    Role getRoleAdmin();
+
+    Role getRoleUser();
 }

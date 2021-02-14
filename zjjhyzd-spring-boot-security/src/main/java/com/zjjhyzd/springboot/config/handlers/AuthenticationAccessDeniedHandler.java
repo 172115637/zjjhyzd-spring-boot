@@ -19,7 +19,7 @@ public class AuthenticationAccessDeniedHandler implements AccessDeniedHandler {
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException exception) throws IOException, ServletException {
         response.setStatus(HttpStatus.OK.value());
-        DataModel model = DataModel.instance().setCode(HttpStatus.FORBIDDEN).setMessage("权限不足").setSuccess(false);
+        DataModel model = DataModel.instance().setCode(HttpStatus.FORBIDDEN.value()).setMessage("权限不足").setSuccess(false);
         response.setContentType("application/json;charset=utf-8");
         PrintWriter writer = response.getWriter();
         writer.write(JSON.toJSONString(model));

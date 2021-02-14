@@ -1,6 +1,6 @@
 package com.zjjhyzd.springboot.service;
 
-import com.zjjhyzd.springboot.exception.AlreadyBoundException;
+import com.zjjhyzd.springboot.exception.WechatMiniappException;
 import me.chanjar.weixin.common.error.WxErrorException;
 
 import java.util.Map;
@@ -13,5 +13,5 @@ public interface WechatMiniappService {
      * @return JWT Token
      * @throws WxErrorException appid与本系统appid不一致
      */
-    String login(Map<String, String> params) throws WxErrorException, AlreadyBoundException;
+    String login(Map<String, String> params) throws WxErrorException, WechatMiniappException;
 }

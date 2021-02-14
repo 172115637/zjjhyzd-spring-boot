@@ -13,13 +13,11 @@ public class JwtTokenUtil {
 
     private final static String secret;
     private final static Long expiration;
-    private final static String header;
 
     static {
         Props props = new Props("jwt.properties");
         secret = props.getProperty("jwt.secret");
         expiration = props.getLong("jwt.expiration");
-        header = props.getProperty("jwt.header");
     }
 
     /**

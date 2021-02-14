@@ -9,6 +9,7 @@
         <result column="password" property="password" />
         <result column="phone" property="phone" />
         <result column="email" property="email" />
+        <result column="status" property="status" />
         <result column="create_at" property="createAt" />
         <result column="create_by" property="createBy" />
         <result column="update_at" property="updateAt" />

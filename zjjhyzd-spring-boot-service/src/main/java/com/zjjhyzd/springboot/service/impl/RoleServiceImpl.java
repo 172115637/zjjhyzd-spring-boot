@@ -23,8 +23,9 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
 
     /**
      * 使用迭代查询的思想，自己调自己
+     *
      * @param roleId 权限组ID
-     * @param idSet 所有上级ID
+     * @param idSet  所有上级ID
      * @return 所有上级ID
      */
     @Override
@@ -32,12 +33,22 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
         idSet.add(roleId);
         QueryWrapper<Role> wrapper = new QueryWrapper<Role>().eq("id", roleId).select("id", "parent_id", "enname");
         Role one = this.getOne(wrapper);
-        if (Objects.nonNull(one)){
+        if (Objects.nonNull(one)) {
             idSet.add(one.getId());
-            if (Objects.nonNull(one.getParentId())){
-                this.getParentIdSet(one.getParentId(),idSet);
+            if (Objects.nonNull(one.getParentId())) {
+                this.getParentIdSet(one.getParentId(), idSet);
             }
         }
         return idSet;
+    }
+
+    @Override
+    public Role getRoleAdmin() {
+        return this.getOne(new QueryWrapper<Role>().eq("enname", "ROLE_ADMIN"));
+    }
+
+    @Override
+    public Role getRoleUser() {
+        return this.getOne(new QueryWrapper<Role>().eq("enname", "ROLE_USER"));
     }
 }

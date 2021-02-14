@@ -1,0 +1,110 @@
+{
+  "groups": [
+    {
+      "name": "aliyun.oss",
+      "type": "com.zjjhyzd.springboot.config.AliyunOSSConfig",
+      "sourceType": "com.zjjhyzd.springboot.config.AliyunOSSConfig"
+    },
+    {
+      "name": "aliyun.sms",
+      "type": "com.zjjhyzd.springboot.config.AliyunSMSConfig",
+      "sourceType": "com.zjjhyzd.springboot.config.AliyunSMSConfig"
+    },
+    {
+      "name": "upload",
+      "type": "com.zjjhyzd.springboot.config.UploadConfig",
+      "sourceType": "com.zjjhyzd.springboot.config.UploadConfig"
+    },
+    {
+      "name": "youzan",
+      "type": "com.zjjhyzd.springboot.config.YouZanConfig",
+      "sourceType": "com.zjjhyzd.springboot.config.YouZanConfig"
+    },
+    {
+      "name": "wx.miniapp",
+      "type": "com.zjjhyzd.springboot.config.WxMaProperties",
+      "sourceType": "com.zjjhyzd.springboot.config.WxMaProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "aliyun.oss.access-key-id",
+      "type": "java.lang.String",
+      "sourceType": "com.zjjhyzd.springboot.config.AliyunOSSConfig"
+    },
+    {
+      "name": "aliyun.oss.access-key-secret",
+      "type": "java.lang.String",
+      "sourceType": "com.zjjhyzd.springboot.config.AliyunOSSConfig"
+    },
+    {
+      "name": "aliyun.oss.enable",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.zjjhyzd.springboot.config.AliyunOSSConfig",
+      "defaultValue": false
+    },
+    {
+      "name": "aliyun.oss.endpoint",
+      "type": "java.lang.String",
+      "sourceType": "com.zjjhyzd.springboot.config.AliyunOSSConfig"
+    },
+    {
+      "name": "aliyun.sms.access-key-id",
+      "type": "java.lang.String",
+      "sourceType": "com.zjjhyzd.springboot.config.AliyunSMSConfig"
+    },
+    {
+      "name": "aliyun.sms.access-key-secret",
+      "type": "java.lang.String",
+      "sourceType": "com.zjjhyzd.springboot.config.AliyunSMSConfig"
+    },
+    {
+      "name": "aliyun.sms.enable",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.zjjhyzd.springboot.config.AliyunSMSConfig",
+      "defaultValue": false
+    },
+    {
+      "name": "aliyun.sms.region-id",
+      "type": "java.lang.String",
+      "sourceType": "com.zjjhyzd.springboot.config.AliyunSMSConfig"
+    },
+    {
+      "name": "upload.base-path",
+      "type": "java.lang.String",
+      "sourceType": "com.zjjhyzd.springboot.config.UploadConfig"
+    },
+    {
+      "name": "upload.domain",
+      "type": "java.lang.String",
+      "sourceType": "com.zjjhyzd.springboot.config.UploadConfig"
+    },
+    {
+      "name": "youzan.client-id",
+      "type": "java.lang.String",
+      "sourceType": "com.zjjhyzd.springboot.config.YouZanConfig"
+    },
+    {
+      "name": "youzan.client-secret",
+      "type": "java.lang.String",
+      "sourceType": "com.zjjhyzd.springboot.config.YouZanConfig"
+    },
+    {
+      "name": "youzan.enable",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.zjjhyzd.springboot.config.YouZanConfig",
+      "defaultValue": false
+    },
+    {
+      "name": "youzan.grant-id",
+      "type": "java.lang.String",
+      "sourceType": "com.zjjhyzd.springboot.config.YouZanConfig"
+    },
+    {
+      "name": "wx.miniapp.configs",
+      "type": "java.util.List",
+      "sourceType": "com.zjjhyzd.springboot.config.WxMaProperties"
+    }
+  ],
+  "hints": []
+}

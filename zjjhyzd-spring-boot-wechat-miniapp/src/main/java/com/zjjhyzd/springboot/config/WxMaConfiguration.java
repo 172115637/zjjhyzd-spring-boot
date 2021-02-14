@@ -14,7 +14,6 @@ import me.chanjar.weixin.common.bean.result.WxMediaUploadResult;
 import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.common.error.WxRuntimeException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.PostConstruct;
@@ -25,7 +24,6 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @Configuration
-@EnableConfigurationProperties(WxMaProperties.class)
 public class WxMaConfiguration {
     private final WxMaProperties properties;
 

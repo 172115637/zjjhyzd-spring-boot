@@ -1,8 +1,8 @@
 package com.zjjhyzd.springboot.controller;
 
+import io.swagger.annotations.*;
 import org.springframework.web.bind.annotation.*;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import org.springframework.http.HttpStatus;
 import com.zjjhyzd.springboot.model.DataModel;
 import com.zjjhyzd.springboot.factory.ResponseEntityFactory;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -10,8 +10,6 @@ import org.springframework.http.ResponseEntity;
 import com.zjjhyzd.springboot.service.PermissionService;
 import com.zjjhyzd.springboot.model.Permission;
 import org.springframework.beans.factory.annotation.Autowired;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 
 /**
  * <p>
@@ -31,6 +29,9 @@ public class PermissionController {
     private PermissionService permissionService;
 
     @ApiOperation(value = "分页查询")
+//    @ApiResponses(value = {@ApiResponse(code = 200,message = "success",examples = {
+//            @Example(value = @ExampleProperty(m))
+//    })})
     @GetMapping(value = "/")
     public ResponseEntity<DataModel> list(@RequestParam(required = false,defaultValue = "1") Integer current, @RequestParam(required = false,defaultValue = "10") Integer pageSize) {
         Page<Permission> aPage = permissionService.page(new Page<>(current, pageSize));

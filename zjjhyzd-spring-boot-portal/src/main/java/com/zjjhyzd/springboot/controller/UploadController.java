@@ -4,6 +4,7 @@ import com.zjjhyzd.springboot.config.UploadConfig;
 import com.zjjhyzd.springboot.factory.ResponseEntityFactory;
 import com.zjjhyzd.springboot.model.DataModel;
 import com.zjjhyzd.springboot.utils.UploadUtil;
+import io.swagger.annotations.*;
 import net.coobird.thumbnailator.Thumbnails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,10 +20,16 @@ import java.io.IOException;
 
 @RestController
 @RequestMapping("/api/upload")
+@Api(value = "UploadController", tags = "上传")
 public class UploadController {
     @Autowired
     UploadConfig uploadConfig;
 
+    @ApiOperation(value = "图片")
+    @ApiImplicitParams(value = {
+            @ApiImplicitParam(name = "file", value = "文件", required = true,dataTypeClass = MultipartFile.class),
+            @ApiImplicitParam(name = "compress", value = "允许压缩（0：否，1：是）",dataTypeClass = Integer.class)
+    })
     @PostMapping("/image")
     public ResponseEntity<DataModel> uploadImage(@RequestParam("file") MultipartFile file, @RequestParam(required = false, defaultValue = "0") Integer compress) {
         String originalFilename = file.getOriginalFilename();
@@ -46,6 +53,11 @@ public class UploadController {
 
     }
 
+    @ApiOperation(value = "图片列表")
+    @ApiImplicitParams(value = {
+            @ApiImplicitParam(name = "file", value = "文件列表", required = true,dataTypeClass = MultipartFile.class),
+            @ApiImplicitParam(name = "compress", value = "允许压缩（0：否，1：是）",dataTypeClass = Integer.class)
+    })
     @PostMapping("/image-batch")
     public ResponseEntity<DataModel> uploadImageBatch(@RequestParam("file") MultipartFile[] files, @RequestParam(required = false, defaultValue = "0") Integer compress) {
         String[] result = new String[files.length];
@@ -71,6 +83,10 @@ public class UploadController {
         return ResponseEntityFactory.success(result);
     }
 
+    @ApiOperation(value = "视频")
+    @ApiImplicitParams(value = {
+            @ApiImplicitParam(name = "file", value = "文件", required = true,dataTypeClass = MultipartFile.class)
+    })
     @PostMapping("/video")
     public ResponseEntity<DataModel> uploadvideo(@RequestParam("file") MultipartFile file) {
         String originalFilename = file.getOriginalFilename();
@@ -87,6 +103,10 @@ public class UploadController {
         }
     }
 
+    @ApiOperation(value = "音频")
+    @ApiImplicitParams(value = {
+            @ApiImplicitParam(name = "file", value = "文件", required = true,dataTypeClass = MultipartFile.class)
+    })
     @PostMapping("/audio")
     public ResponseEntity<DataModel> uploadImage(@RequestParam("file") MultipartFile file) {
         String originalFilename = file.getOriginalFilename();
@@ -103,6 +123,10 @@ public class UploadController {
         }
     }
 
+    @ApiOperation(value = "文件")
+    @ApiImplicitParams(value = {
+            @ApiImplicitParam(name = "file", value = "文件", required = true,dataTypeClass = MultipartFile.class)
+    })
     @PostMapping("/file")
     public ResponseEntity<DataModel> uploadFile(@RequestParam("file") MultipartFile file) {
         String originalFilename = file.getOriginalFilename();

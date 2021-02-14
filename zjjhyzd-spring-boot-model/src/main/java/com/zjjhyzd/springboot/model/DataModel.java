@@ -2,11 +2,16 @@ package com.zjjhyzd.springboot.model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 import org.springframework.http.HttpStatus;
 
 import java.io.Serializable;
 
 @ApiModel(value = "通用响应数据结构类")
+@Data
+@Accessors(chain = true)
 public class DataModel implements Serializable {
     private static final long serialVersionUID = -1291329519310864143L;
 
@@ -22,9 +27,8 @@ public class DataModel implements Serializable {
     @ApiModelProperty(value = "消息提示")
     private String message;
 
-    @SuppressWarnings("unused")
-    private DataModel() {
-        super();
+    private DataModel(Object data) {
+        this.data = data;
     }
 
     /**
@@ -75,53 +79,5 @@ public class DataModel implements Serializable {
         this.success = success;
         this.code = code;
         this.message = message;
-    }
-
-    public Object getData() {
-        return data;
-    }
-
-    public DataModel setData(Object data) {
-        this.data = data;
-        return this;
-    }
-
-    public Boolean getSuccess() {
-        return success;
-    }
-
-    public DataModel setSuccess(Boolean success) {
-        this.success = success;
-        return this;
-    }
-
-
-    public Integer getCode() {
-        return code;
-    }
-
-    public DataModel setCode(Integer code) {
-        this.code = code;
-        return this;
-    }
-
-    public DataModel setCode(HttpStatus status) {
-        this.code = status.value();
-        return this;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public DataModel setMessage(String msg) {
-        this.message = msg;
-        return this;
-    }
-
-    @Override
-    public String toString() {
-        return "[data=" + data + ", success=" + success + ", code=" + code
-                + ", msg=" + message + "]";
     }
 }

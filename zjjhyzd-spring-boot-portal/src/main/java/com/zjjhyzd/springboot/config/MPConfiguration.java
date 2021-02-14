@@ -1,6 +1,5 @@
 package com.zjjhyzd.springboot.config;
 
-import com.baomidou.dynamic.datasource.plugin.MasterSlaveAutoRoutingPlugin;
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.autoconfigure.ConfigurationCustomizer;
 import com.baomidou.mybatisplus.core.incrementer.IdentifierGenerator;
@@ -50,30 +49,11 @@ public class MPConfiguration {
 
 //    /**
 //     * <p>
-//     *     分页器
+//     *     自动读写分离
 //     * </p>
 //     */
 //    @Bean
-//    public PaginationInnerInterceptor paginationInterceptor(MybatisPlusInterceptor mybatisPlusInterceptor) {
-//        return new PaginationInnerInterceptor();
+//    public MasterSlaveAutoRoutingPlugin masterSlaveAutoRoutingPlugin(){
+//        return new MasterSlaveAutoRoutingPlugin();
 //    }
-//
-//    /**
-//     * <p>
-//     *     乐观锁
-//     * </p>
-//     */
-//    @Bean
-//    public OptimisticLockerInnerInterceptor optimisticLockerInnerInterceptor() {
-//        return new OptimisticLockerInnerInterceptor();
-//    }
-    /**
-     * <p>
-     *     自动读写分离
-     * </p>
-     */
-    @Bean
-    public MasterSlaveAutoRoutingPlugin masterSlaveAutoRoutingPlugin(){
-        return new MasterSlaveAutoRoutingPlugin();
-    }
 }
