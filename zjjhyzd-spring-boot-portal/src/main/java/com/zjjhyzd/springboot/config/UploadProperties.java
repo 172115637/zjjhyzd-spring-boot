@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 @Data
 @Configuration
 @ConfigurationProperties(prefix = "upload")
-public class UploadConfig {
+public class UploadProperties {
     private String domain;
     private String basePath;
 }

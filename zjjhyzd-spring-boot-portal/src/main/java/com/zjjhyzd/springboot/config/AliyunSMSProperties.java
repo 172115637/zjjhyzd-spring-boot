@@ -7,11 +7,11 @@ import org.springframework.context.annotation.Configuration;
 
 @Data
 @Configuration
-@ConfigurationProperties(prefix = "youzan")
-@ConditionalOnProperty(name = {"enable"}, prefix = "youzan", havingValue = "true")
-public class YouZanConfig {
+@ConfigurationProperties(prefix = "aliyun.sms")
+@ConditionalOnProperty(name = {"enable"}, prefix = "aliyun.sms", havingValue = "true")
+public class AliyunSMSProperties {
     private Boolean enable = false;
-    private String clientId;
-    private String clientSecret;
-    private String grantId;
+    private String regionId;
+    private String accessKeyId;
+    private String accessKeySecret;
 }

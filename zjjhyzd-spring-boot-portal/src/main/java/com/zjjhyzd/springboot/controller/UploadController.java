@@ -1,6 +1,6 @@
 package com.zjjhyzd.springboot.controller;
 
-import com.zjjhyzd.springboot.config.UploadConfig;
+import com.zjjhyzd.springboot.config.UploadProperties;
 import com.zjjhyzd.springboot.factory.ResponseEntityFactory;
 import com.zjjhyzd.springboot.model.DataModel;
 import com.zjjhyzd.springboot.utils.UploadUtil;
@@ -23,7 +23,7 @@ import java.io.IOException;
 @Api(value = "UploadController", tags = "上传")
 public class UploadController {
     @Autowired
-    UploadConfig uploadConfig;
+    UploadProperties uploadProperties;
 
     @ApiOperation(value = "图片")
     @ApiImplicitParams(value = {
@@ -33,8 +33,8 @@ public class UploadController {
     @PostMapping("/image")
     public ResponseEntity<DataModel> uploadImage(@RequestParam("file") MultipartFile file, @RequestParam(required = false, defaultValue = "0") Integer compress) {
         String originalFilename = file.getOriginalFilename();
-        String basePath = uploadConfig.getBasePath();
-        String domain = uploadConfig.getDomain();
+        String basePath = uploadProperties.getBasePath();
+        String domain = uploadProperties.getDomain();
 
         file.getContentType();
         try {
@@ -64,8 +64,8 @@ public class UploadController {
         for (int i = 0; i < files.length; i++) {
             MultipartFile file = files[i];
             String originalFilename = file.getOriginalFilename();
-            String basePath = uploadConfig.getBasePath();
-            String domain = uploadConfig.getDomain();
+            String basePath = uploadProperties.getBasePath();
+            String domain = uploadProperties.getDomain();
             try {
                 String savePath = UploadUtil.generatorSavePath(basePath, "image", originalFilename);
                 File saveFile = new File(basePath + savePath);
@@ -90,8 +90,8 @@ public class UploadController {
     @PostMapping("/video")
     public ResponseEntity<DataModel> uploadvideo(@RequestParam("file") MultipartFile file) {
         String originalFilename = file.getOriginalFilename();
-        String basePath = uploadConfig.getBasePath();
-        String domain = uploadConfig.getDomain();
+        String basePath = uploadProperties.getBasePath();
+        String domain = uploadProperties.getDomain();
         try {
             String savePath = UploadUtil.generatorSavePath(basePath, "video", originalFilename);
             File saveFile = new File(basePath + savePath);
@@ -110,8 +110,8 @@ public class UploadController {
     @PostMapping("/audio")
     public ResponseEntity<DataModel> uploadImage(@RequestParam("file") MultipartFile file) {
         String originalFilename = file.getOriginalFilename();
-        String basePath = uploadConfig.getBasePath();
-        String domain = uploadConfig.getDomain();
+        String basePath = uploadProperties.getBasePath();
+        String domain = uploadProperties.getDomain();
         try {
             String savePath = UploadUtil.generatorSavePath(basePath, "audio", originalFilename);
             File saveFile = new File(basePath + savePath);
@@ -130,8 +130,8 @@ public class UploadController {
     @PostMapping("/file")
     public ResponseEntity<DataModel> uploadFile(@RequestParam("file") MultipartFile file) {
         String originalFilename = file.getOriginalFilename();
-        String basePath = uploadConfig.getBasePath();
-        String domain = uploadConfig.getDomain();
+        String basePath = uploadProperties.getBasePath();
+        String domain = uploadProperties.getDomain();
         try {
             String savePath = UploadUtil.generatorSavePath(basePath, "file", originalFilename);
             File saveFile = new File(basePath + savePath);

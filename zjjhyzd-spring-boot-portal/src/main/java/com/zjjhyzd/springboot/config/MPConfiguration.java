@@ -47,12 +47,13 @@ public class MPConfiguration {
         return configuration -> configuration.setUseDeprecatedExecutor(false);
     }
 
-//    /**
-//     * <p>
-//     *     自动读写分离
-//     * </p>
-//     */
+    /**
+     * <p>
+     *     自动读写分离
+     * </p>
+     */
 //    @Bean
+//    @ConditionalOnClass(MasterSlaveAutoRoutingPlugin.class)
 //    public MasterSlaveAutoRoutingPlugin masterSlaveAutoRoutingPlugin(){
 //        return new MasterSlaveAutoRoutingPlugin();
 //    }

@@ -11,8 +11,6 @@ import com.youzan.cloud.open.sdk.core.client.core.YouZanClient;
 import com.youzan.cloud.open.sdk.core.oauth.model.OAuthToken;
 import com.youzan.cloud.open.sdk.core.oauth.token.TokenParameter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -26,8 +24,8 @@ public class BeanConfiguration {
      * @return
      */
     @Bean
-    @ConditionalOnBean(AliyunSMSConfig.class)
-    public IAcsClient iAcsClient(AliyunSMSConfig config) {
+    @ConditionalOnBean(AliyunSMSProperties.class)
+    public IAcsClient iAcsClient(AliyunSMSProperties config) {
         return new DefaultAcsClient(DefaultProfile.getProfile(config.getRegionId(), config.getAccessKeyId(), config.getAccessKeySecret()));
     }
 
@@ -38,8 +36,8 @@ public class BeanConfiguration {
      * @return
      */
     @Bean(destroyMethod = "shutdown")
-    @ConditionalOnBean(AliyunOSSConfig.class)
-    public OSS ossClient(AliyunOSSConfig config) {
+    @ConditionalOnBean(AliyunOSSProperties.class)
+    public OSS ossClient(AliyunOSSProperties config) {
         return new OSSClientBuilder().build(config.getEndpoint(), config.getAccessKeyId(), config.getAccessKeySecret());
     }
 
@@ -49,7 +47,7 @@ public class BeanConfiguration {
      * @return
      */
     @Bean
-    @ConditionalOnBean(YouZanConfig.class)
+    @ConditionalOnBean(YouZanProperties.class)
     public YouZanClient youZanClient() {
         return new DefaultYZClient();
     }
@@ -62,8 +60,8 @@ public class BeanConfiguration {
      * @throws SDKException
      */
     @Bean
-    @ConditionalOnBean(YouZanConfig.class)
-    public TokenParameter tokenParameter(YouZanConfig config) throws SDKException {
+    @ConditionalOnBean(YouZanProperties.class)
+    public TokenParameter tokenParameter(YouZanProperties config) throws SDKException {
         return TokenParameter.self()
                 .clientId(config.getClientId())
                 .clientSecret(config.getClientSecret())
@@ -82,7 +80,7 @@ public class BeanConfiguration {
      * @throws SDKException
      */
     @Bean
-    @ConditionalOnBean(YouZanConfig.class)
+    @ConditionalOnBean(YouZanProperties.class)
     public OAuthToken oAuthToken(YouZanClient client, TokenParameter parameter) throws SDKException {
         return client.getOAuthToken(parameter);
     }

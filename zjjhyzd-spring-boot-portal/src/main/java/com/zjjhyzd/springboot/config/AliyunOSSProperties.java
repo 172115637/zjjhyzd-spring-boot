@@ -7,11 +7,11 @@ import org.springframework.context.annotation.Configuration;
 
 @Data
 @Configuration
-@ConfigurationProperties(prefix = "aliyun.sms")
-@ConditionalOnProperty(name = {"enable"}, prefix = "aliyun.sms", havingValue = "true")
-public class AliyunSMSConfig {
+@ConfigurationProperties(prefix = "aliyun.oss")
+@ConditionalOnProperty(name = {"enable"}, prefix = "aliyun.oss", havingValue = "true")
+public class AliyunOSSProperties {
     private Boolean enable = false;
-    private String regionId;
+    private String endpoint;
     private String accessKeyId;
     private String accessKeySecret;
 }

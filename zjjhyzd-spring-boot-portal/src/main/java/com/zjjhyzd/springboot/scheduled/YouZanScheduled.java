@@ -4,14 +4,14 @@ import com.youzan.cloud.open.sdk.common.exception.SDKException;
 import com.youzan.cloud.open.sdk.core.client.core.YouZanClient;
 import com.youzan.cloud.open.sdk.core.oauth.model.OAuthToken;
 import com.youzan.cloud.open.sdk.core.oauth.token.TokenParameter;
-import com.zjjhyzd.springboot.config.YouZanConfig;
+import com.zjjhyzd.springboot.config.YouZanProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 @Component
-@ConditionalOnBean(YouZanConfig.class)
+@ConditionalOnBean(YouZanProperties.class)
 public class YouZanScheduled {
 
     @Autowired
