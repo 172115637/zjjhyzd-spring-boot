@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjjhyzd.springboot.mapper.ConfigureMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zjjhyzd.springboot.model.Configure">
+        <id column="configure_id" property="configureId" />
+        <result column="keywords" property="keywords" />
+        <result column="content" property="content" />
+        <result column="content_sub" property="contentSub" />
+        <result column="description" property="description" />
+        <result column="createAt" property="createAt" />
+        <result column="createBy" property="createBy" />
+        <result column="updateAt" property="updateAt" />
+        <result column="updateBy" property="updateBy" />
+        <result column="deleteAt" property="deleteAt" />
+        <result column="deleteBy" property="deleteBy" />
+        <result column="dr" property="dr" />
+        <result column="data_version" property="dataVersion" />
+    </resultMap>
+</mapper>
